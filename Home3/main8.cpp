@@ -41,11 +41,12 @@ int main(){
             else
                 cout << "Разница между самой высокой и самой низкой зарплатой в отделе:" << ch3 - ch1 << '\n';
         cout << "Средня зп в отделе: " << static_cast<double>((ch1+ch2+ch3))/static_cast<double>(3) << '\n';
-    } else if(ch1 == ch2 && ch1== ch3){
+    } else {
         cout << "Зарплата одинаковая  : " << ch1 <<'\n';
         cout << "Разница в зп 0 рублей \n";
         cout << "Средня зп в отделе: " << static_cast<double>((ch1+ch2+ch3))/static_cast<double>(3) << '\n';
     }
+   
 
    
     return 0;
