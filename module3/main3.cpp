@@ -13,7 +13,8 @@ int main()
     int nightFade{20};
     int dailyGrowth{50};
   
-    cout << beginHeight + (dailyGrowth*3) - (nightFade*2) << '\n';
+    //cout << beginHeight + (dailyGrowth*3) - (nightFade*2) << '\n';
+    cout << beginHeight + (dailyGrowth - nightFade) * 2 + dailyGrowth / 2;
    
     return 0;
 }
