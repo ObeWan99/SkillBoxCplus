@@ -11,15 +11,15 @@ int main()
         cout << "дружище введи корректный день\n";
     } else if(day == 1){
         cout << "Меню сегодня (понедельник):\n";
-    } else if (day ==2){
+    } else if (day == 2){
         cout << "Меню сегодня (вторник):\n";
-    } else if(day ==3){
+    } else if(day == 3){
         cout << "Меню сегодня (среда):\n";
-    } else if(day ==4){
+    } else if(day == 4){
         cout << "Меню сегодня (четверг):\n";
-    } else if(day ==5){
+    } else if(day == 5){
         cout << "Меню сегодня (пятница):\n";
-    } else if(day ==6){
+    } else if(day == 6){
         cout << "Меню сегодня (суббота):\n";
     } else{
         cout << "выходной\n";
