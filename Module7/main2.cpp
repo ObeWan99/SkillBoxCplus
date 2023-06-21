@@ -1,63 +1,53 @@
 #include <iostream>
 using namespace std;
-int main()
-{
-    int water{1000};
-    cout << "кол-во воды в кофемашинке " << water << endl;
-    int milk{1000};
-    cout << "кол-во молока в кофемашинке " << milk << endl;
 
-    int counterLatte{};
-    int counterAmericano{};
-    int drink{};
-    while (true)
-    {
-        cout << "Выберите напиток(1-американо, 2-латте): ";
-        cin >> drink;
-        if (drink == 1 && water > 300)
-        {
-            if (water < 300 && water > 30)
-            {
-                cout << "Остаток воды: " << water << endl;
-                cout << "Ваш напиток не готов " << endl
-                     << "Попробуйте приготовить другой напиток " << endl;
+int main() {
+    int milk, water;
+    int americano_cups = 0, latte_cups = 0;
+    cout << "Введите количество миллилитров молока в кофемашине: ";
+    cin >> milk;
+    cout << "Введите количество миллилитров воды в кофемашине: ";
+    cin >> water;
+    while (true) {
+        cout << "Выберите напиток: 1 - американо, 2 - латте, 0 - выход: ";
+        int choice;
+        cin >> choice;
+        if (choice == 0) {
+            break;
+        } else if (choice == 1) {
+            if (water >= 300) {
+                water -= 300;
+                americano_cups++;
+                cout << "Ваш напиток готов" << endl;
+            } else {
+                cout << "Не хватает воды" << endl;
             }
-            water -= 300;
-            counterAmericano++;
-            cout << "Ваш напиток готов\n";
+        } else if (choice == 2) {
+            if (water >= 30 && milk >= 270) {
+                water -= 30;
+                milk -= 270;
+                latte_cups++;
+                cout << "Ваш напиток готов" << endl;
+            } else if (water < 30) {
+                cout << "Не хватает воды" << endl;
+            } else {
+                cout << "Не хватает молока" << endl;
+            }
+        } else {
+            cout << "Некорректный выбор" << endl;
         }
-        else if (drink == 2 && water > 30 && milk > 270)
-        {
-            if (water < 30 && milk < 270)
-            {
-                cout << "Остаток воды" << water << endl
-                     << "Остаток молока" << milk << endl
-                     << "Ваш напиток не готов\n";
-            }
-            water -= 30;
-            milk -= 270;
-            counterLatte++;
-            cout << "Ваш напиток готов\n";
-        }
-        else if ((drink == 1 && water < 300) || (drink == 2 && water < 30 && milk < 270))
-        {
-            if (water < 30 && milk < 270)
-            {
-                break;
-            }
-            else
-            {
-                cout << "попробуйте приготовить другой напиток\n";
-            }
+        if (water < 30 && milk < 270) {
+            cout << "Ингредиенты подошли к концу" << endl;
+            cout << "Остаток воды: " << water << " мл" << endl;
+            cout << "Остаток молока: " << milk << " мл" << endl;
+            cout << "Приготовлено чашек американо: " << americano_cups << endl;
+            cout << "Приготовлено чашек латте: " << latte_cups << endl;
+            return 0;
         }
     }
-
-    cout << "***отчет*** " << endl
-         << "Ингредиентов осталось: " << endl
-         << "Вода: " << water << " мл" << endl
-         << "Молоко: " << milk << " мл" << endl
-         << "Кружек американо приготовлено: " << counterAmericano << endl
-         << "Кружек латте приготовлено: " << counterLatte << endl;
-
+    cout << "Остаток воды: " << water << " мл" << endl;
+    cout << "Остаток молока: " << milk << " мл" << endl;
+    cout << "Приготовлено чашек американо: " << americano_cups << endl;
+    cout << "Приготовлено чашек латте: " << latte_cups << endl;
     return 0;
 }
