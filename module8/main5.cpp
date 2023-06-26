@@ -2,32 +2,24 @@
 #include <cmath>
 using namespace std;
 
-int main()
-{
-    int km{};
-    cout << "Привет! Сэм! Сколько км ты сегодня пробежал? ";
+int main() {
+    int km;
+    cout << "Введите количество километров: ";
     cin >> km;
-    int count{1};
-    int time{};
-    float middleValue{};
-    while (count <= km)
-    {
-        cout << "Какой у тебя был темп на " << count << " кругу ";
-        cin >> time;
-        count ++;
-        middleValue +=time;
+
+    int total_seconds = 0;
+    for (int i = 1; i <= km; i++) {
+        int seconds;
+        cout << "Введите темп на километр " << i << " (в секундах): ";
+        cin >> seconds;
+        total_seconds += seconds;
     }
-    middleValue /= count;
-    middleValue = static_cast<float>(middleValue)/60;
 
-    float intpart, fractpart;
+    int average_seconds = total_seconds / km;
+    int minutes = average_seconds / 60;
+    int seconds = average_seconds % 60;
 
-    fractpart = modf(middleValue, &intpart);
-    
-    cout << "Твой средний темп за тренировку:" << intpart << " мин " << fractpart << " сек\n";
+    cout << "Средний темп: " << minutes << " минут " << seconds << " секунд" << endl;
 
-      
-    
-       
     return 0;
 }
