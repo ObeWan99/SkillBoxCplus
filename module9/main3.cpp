@@ -4,19 +4,23 @@ using namespace std;
 
 int main()
 {
-    string words{};
-    cout << "Введите слова: ";
-    getline(cin, words);
+    string input;
+    getline(cin, input);
 
-    int count{};
+    int wordCount = 0;
+    bool inWord = false; 
 
-    for (int  i = 0; i < words.length(); i++){
-        if(words[i] == ' ')
-            count++;
+    for (char c : input) {
+        if (c != ' ') {
+            if (!inWord) { 
+                inWord = true;
+                wordCount++;
+            }
+        } else { 
+            inWord = false; 
+        }
     }
-    
-    cout << count;
 
-
+    cout << "Number of words: " << wordCount << endl;
     return 0;
 }
