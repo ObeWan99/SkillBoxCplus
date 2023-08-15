@@ -9,7 +9,7 @@ string encrypt_caesar(string str, int pos)
         if(c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')
         {
             char base = isupper(c) ? 'A' : 'a';
-            result += (c - base + pos) % 26 + base; 
+            result += (c - base + pos + 26) % 26 + base; 
         } else{
             result += c;
         }
@@ -23,6 +23,7 @@ string decrypt_caesar(string str, int pos)
     return  encrypt_caesar(str, 26 - pos);;
 }
 
+
 int main()
 {
     string str;
@@ -32,4 +33,6 @@ int main()
     cout << endl;
     cout << decrypt_caesar(encrypt_caesar(str, pos), pos);
 }
+
+
 
