@@ -28,7 +28,7 @@ vector<string> split(const string &str, char delim)
  
     auto pos = str.find(delim);
  
-    while (pos != string::npos)
+    while (pos != string::npos) //string::npos, если символ не найден
     {
         list.push_back(str.substr(i, pos - i));
         i = ++pos;
