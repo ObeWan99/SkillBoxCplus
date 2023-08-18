@@ -1,11 +1,10 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 bool emailFirstPartDictionaryValidation (char c) {
     string dictionaryOfSymbols = "!#$%&'*+-/=?^_`{|}~";
-    if (c > 'A' && c < 'Z') return true;
-    else if (c > 'a' && c < 'z') return true;
+    if (isalpha(c)) return true;
     else if (c == '-' || c == '.') return true;
     else {
         for (int i = 0; i < dictionaryOfSymbols.length(); ++i) {
@@ -15,34 +14,46 @@ bool emailFirstPartDictionaryValidation (char c) {
     return false;
 }
 bool emailSecondPartDictionaryValidation (char c) {
-    if (c > 'A' && c < 'Z') return true;
-    else if (c > 'a' && c < 'z') return true;
+    if (isalpha(c)) return true;
     else if (c == '-' || c == '.') return true;
     return false;
 }
 
-bool emailValidation (string email) {
-    string firstPart, secondPart;
+
+
+bool isValidEmail(string email) {
+
     bool correct = true;
-
-    //check symbol "."
-    if (email[0] == '.' || email[email.length() - 1] == '.') return false;
-
-    //check symbol "@"
-    if (email.find('@') == string::npos) return false;
-    else if (email.find('@') != email.rfind('@')) return false;
+    string firstPart, secondPart;
+    int countAt{};
+    int countDot{};
+    for(char ch : email)
+    {
+        if(ch == '.')
+        {
+            countDot++;
+        }
+        if(ch == '@')
+        {
+            countAt++;
+        }
+    }
+    if (countAt != 1) return false;
+    //if (countDot != 3) return false;
+    
+    
 
     firstPart = email.substr(0, email.find('@'));
     secondPart = email.substr(email.find('@') + 1, email.length());
+     //First part validation
+     for (int i = 0; correct == true && i < firstPart.length(); ++i) {
+         if (firstPart.length() < 1 || firstPart.length() > 64) correct = false;
+         else if (!emailFirstPartDictionaryValidation(firstPart[i])) correct = false;
+         else if (i > 0 && (firstPart[i] == '.' && firstPart[i - 1] == '.')) correct = false;
+         else correct = true;
+     }
+     if (correct == false) return false;
 
-    //First part validation
-    for (int i = 0; correct == true && i < firstPart.length(); ++i) {
-        if (firstPart.length() < 1 || firstPart.length() > 64) correct = false;
-        else if (!emailFirstPartDictionaryValidation(firstPart[i])) correct = false;
-        else if (i > 0 && (firstPart[i] == '.' && firstPart[i - 1] == '.')) correct = false;
-        else correct = true;
-    }
-    if (correct == false) return false;
 
     //Second part validation
     for (int i = 0; correct == true && i < secondPart.length(); ++i) {
@@ -57,9 +68,12 @@ bool emailValidation (string email) {
 
 int main() {
     string email;
-
-    cout << "Input email: " << endl;
     cin >> email;
-
-    cout << "qwe: " << (emailValidation(email) ? "yes" : "no" ) << "\n";
+    if (isValidEmail(email)) {
+        cout << "Yes" << endl;
+    }
+    else {
+        cout << "No" << endl;
+    }
+    return 0;
 }
