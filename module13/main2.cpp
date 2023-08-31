@@ -1,0 +1,19 @@
+#include<iostream>
+#include<vector>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+    vector<float> prices {2.5, 4.25, 3.0, 10.0};
+
+    // Вектор покупок: {1, 1, 0, 3}, то есть два товара по индексу 1 и по одному — индексов 0 и 3.
+    vector<int> items {1, 1, 0, 3};
+    float sum{};
+    for(auto &item : items)
+    {
+        sum += prices[item];
+    }
+    cout << "Sum = " << sum << endl;
+}
