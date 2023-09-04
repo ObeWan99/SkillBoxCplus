@@ -11,9 +11,10 @@ int main()
     // Вектор покупок: {1, 1, 0, 3}, то есть два товара по индексу 1 и по одному — индексов 0 и 3.
     vector<int> items {1, 1, 0, 3};
     float sum{};
-    for(auto &item : items)
+    for(int i = 0; i < items.size(); i++)
     {
-        sum += prices[item];
+        if(items[i] >= 0 && items[i] <= 4)
+            sum += prices[items[i]];
     }
     cout << "Sum = " << sum << endl;
 }
