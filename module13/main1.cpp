@@ -1,34 +1,45 @@
+
 #include<iostream>
 #include<vector>
-#include<string>
 
 using namespace std;
 
 int main()
 {
-    int n;
+    int n{};
+
     cout << "Input vector size: ";
     cin >> n;
-    vector<int> arr(n);
+
+    vector<int> arr;
+    arr.reserve(n);
     cout << "Input numbers: ";
-    for(int i = 0; i < arr.size(); i++)
+    for(int i = 0; i < n; i++)
     {
         cin >> arr[i];
+        arr.push_back(arr[i]);
     }
+
     cout << "Input number to delete: ";
     cin >> n;
-    for (auto it = arr.begin(); it != arr.end(); ) {
-        if (*it == n) {
-            it = arr.erase(it);
-        } else {
-            it++;
+    for(int i = 0; i < n; i++)
+    {
+        if(arr[i] == n){
+            swap(arr[i], arr[arr.size() - 1]);
+            arr.pop_back();
         }
     }
-    for(auto & el : arr)
-    {
-        cout << el << " ";
-    }
-    cout << endl;
 
+    for(auto el : arr)
+    {
+        cout << el << '\t';
+    }
+    cout << '\n';
 
 }
+
+
+
+
+
+

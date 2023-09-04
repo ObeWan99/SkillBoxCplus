@@ -4,16 +4,16 @@
 using namespace std;
 
 int main() {
-    vector<int> db(20);
+    vector<int> db(5);
     int n, i = 0;
     while (cin >> n && n != -1) {
-        if (i < 20) {
+        if (i < 5) {
             db[i++] = n;
         } else {
-            for (int j = 1; j < 20; j++) {
+            for (int j = 1; j < 5; j++) {
                 db[j - 1] = db[j];
             }
-            db[19] = n;
+            db[4] = n;
         }
     }
     for (int j = 0; j < i; j++) {
