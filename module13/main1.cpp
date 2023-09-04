@@ -1,6 +1,7 @@
 
 #include<iostream>
 #include<vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -22,13 +23,17 @@ int main()
 
     cout << "Input number to delete: ";
     cin >> n;
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < arr.size(); i++)
     {
-        if(arr[i] == n){
-            swap(arr[i], arr[arr.size() - 1]);
-            arr.pop_back();
+        for(int j = 0; j < arr.size(); j++)
+        {
+            if(arr[j] == n){
+                swap(arr[j], arr[arr.size() - 1]);
+                arr.pop_back();
+            }
         }
     }
+
 
     for(auto el : arr)
     {
