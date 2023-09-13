@@ -28,7 +28,12 @@ int main()
         for(int j = 0; j < arr.size(); j++)
         {
             if(arr[j] == n){
-                swap(arr[j], arr[arr.size() - 1]);
+                // swap(arr[j], arr[arr.size() - 1]);
+                // arr.pop_back();
+                for(int k = ++j; k < arr.size(); k++)
+                {
+                    arr[k-1] = arr[k];
+                }
                 arr.pop_back();
             }
         }
