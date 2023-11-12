@@ -1,36 +1,38 @@
 #include <iostream>
-#include <vector> 
+#include <vector>
+
 using namespace std;
 
-int binary_search(vector<int> vec, int n)
-{
-    int low = 0;
-    int high = vec.size()-1;
-    while (low <= high)
-    {
-        int mid = (low + high) / 2;
-        int guess = vec[mid];
-        if(guess == n)
-        {
-           return mid;
+int main() {
+    int size;
+    cout << "Enter the size of the vector: ";
+    cin >> size;
+    vector<int> a;
+    //используется функция resize() для установки размера вектора в значение size
+    a.resize(size);
+
+    for (int i = 0; i < size; i++) {
+        cout << "Enter element " << i << ": ";
+        cin >> a[i];
+    }
+
+    int max_sum = a[0], max_end = a[0], start = 0, end = 0;
+
+    for (int i = 1; i < a.size(); i++) {
+        if (a[i] > max_end + a[i]) {
+            max_end = a[i];
+            start = i;
+        } else {
+            max_end += a[i];
         }
-        else if( guess > n)
-        {
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+
+        if (max_end > max_sum) {
+            max_sum = max_end;
+            end = i;
         }
     }
 
+    cout << start << " " << end << endl;
+
     return 0;
-
-}
-
-int main()
-{
-  vector<int> vec = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-  int n{5};
-  cout << binary_search(vec, n) << endl;
-
 }
