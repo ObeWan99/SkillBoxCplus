@@ -1,81 +1,87 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-void setArray(bool (*arr)[12], int rows){
-    for(int i = 0; i < rows; i++)
-    {
-        for(int j = 0; j < 12; j++)
-        {
-            arr[i][j] = true;
-        }
-    }
-}
-
-bool printArray(bool (*arr)[12], int rows){
-    bool empty = true;
-     for(int i = 0; i < 12; i++)
-    {
-        for(int j = 0; j < rows; j++)
-        {
-            if(arr[i][j]){
-                cout << "O" << '\t';
-                empty = false;
-            }
-            else{
-                cout << "X" << '\t';
+void print_bubble_wrap(vector<vector<bool>> &wrap) {
+    for (int i = 0; i < wrap.size(); i++) {
+        for (int j = 0; j < wrap[i].size(); j++) {
+            if (wrap[i][j]) {
+                cout << "o ";
+            } else {
+                cout << "x ";
             }
         }
         cout << endl;
     }
-    return empty;
 }
 
-
-void burstBubbles(bool (*arr)[12], int rows, int startX, int startY, int endX, int endY){
-    int startPointX;
-    int startPointY;
-    int endPointX;
-    int endPointY;
-    if (startX <= endX) {
-        startPointX = startX;
-        endPointX = endX;
-    } else {
-        startPointX = endX;
-        endPointX = startX;
-    }
-    if (startY <= endY) {
-        startPointY = startY;
-        endPointY = endY;
-    } else {
-        startPointY = endY;
-        endPointY = startY;
-    }
-    for (int i = startPointY; i <= endPointY; i++) {
-        for (int j = startPointX; j <= endPointX; j++) {
-            arr[i][j] = false;
-            cout << "Pop!\n";
+void init_bubble_wrap(vector<vector<bool>> &wrap) {
+    for (int i = 0; i < wrap.size(); i++) {
+        for (int j = 0; j < wrap[i].size(); j++) {
+            wrap[i][j] = true;
         }
     }
-
 }
 
+bool is_valid_coord(int coord, int max_coord) {
+    return coord >= 0 && coord < max_coord;
+}
 
-int main(){
-    bool arr[12][12];
-    setArray(arr, 12);
-    int a, b, c, d;
-    while(!printArray(arr, 12)) {
-        cout << " Введите 1-ую координату региона: ";
-        cin >> a >> b;
-        cout << " Введите 2-ую координату региона: ";
-        cin >> c >> d;
-        if (a < 1 || a > 12 || b < 1 || b > 12
-            || c < 1 || c > 12 || d < 1 || d > 12) {
-            cout << "Invalid range!\n";
+void pop_bubbles(vector<vector<bool>> &wrap, int x1, int y1, int x2, int y2) {
+    if (!is_valid_coord(x1, wrap.size()) || !is_valid_coord(y1, wrap[0].size()) ||
+        !is_valid_coord(x2, wrap.size()) || !is_valid_coord(y2, wrap[0].size())) {
+        cout << "Error: Invalid coordinates" << endl;
+        return;
+    }
+
+    int start_x = min(x1, x2);
+    int end_x = max(x1, x2);
+    int start_y = min(y1, y2);
+    int end_y = max(y1, y2);
+
+    for (int i = start_x; i <= end_x; i++) {
+        for (int j = start_y; j <= end_y; j++) {
+            if (wrap[i][j]) {
+                wrap[i][j] = false;
+                cout << "Pop!" << endl;
+            }
         }
-        else {
-            burstBubbles(arr, 12, --a, --b, --c, --d);
+    }
+}
+
+int main() {
+    int n = 12;
+    vector<vector<bool>> bubble_wrap(n, vector<bool>(n, true));
+
+    init_bubble_wrap(bubble_wrap);
+    print_bubble_wrap(bubble_wrap);
+
+    int x1, y1, x2, y2;
+    while (true) {
+        cout << "Enter coordinates (x1 y1 x2 y2): ";
+        cin >> x1 >> y1 >> x2 >> y2;
+        pop_bubbles(bubble_wrap, x1, y1, x2, y2);
+        print_bubble_wrap(bubble_wrap);
+
+        bool all_popped = true;
+        for (int i = 0; i < bubble_wrap.size(); i++) {
+            for (int j = 0; j < bubble_wrap[i].size(); j++) {
+                if (bubble_wrap[i][j]) {
+                    all_popped = false;
+                    break;
+                }
+            }
+            if (!all_popped) {
+                break;
+            }
         }
-    }   
+
+        if (all_popped) {
+            cout << "All bubbles popped!" << endl;
+            break;
+        }
+    }
+
+    return 0;
 }

@@ -1,85 +1,75 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int const rows{4};
-int const cols{4};
+const int N = 4;
 
-bool equalityTest(int a[][cols], int b[][cols])
-{
-
-    for(int i = 0; i < rows; i++)
-    {
-        for(int j = 0; j < cols; j++)
-        {
-            if(a[i][j] != b[i][j]) return false;
-        }
-    }
-
-    return true;
-}
-
- mainDiagonal(int a[][cols])
-{
-    for(int i = 0; i < rows; i ++)
-    {
-        for(int j = 0; j < cols; j++)
-        {
-            if(a[i][j] != a[0][0] && a[i][j] && a[1][1] && a[i][j] != a[2][2] && a[i][j] != a[3][3])
-            {
-                a[i][j] = 0;
+// Function to compare two matrices for complete equality
+bool areMatricesEqual(int A[N][N], int B[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (A[i][j] != B[i][j]) {
+                return false;
             }
         }
     }
-    return a;
+    return true;
 }
 
-void print(int a[][cols])
-{
-     for(int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < cols; j++)
-        {
-            cout << a [i][j] << " ";
+// Function to convert a matrix to diagonal form
+void convertToDiagonal(int matrix[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i != j) {
+                matrix[i][j] = 0;
+            }
         }
-        cout << endl;
     }
 }
 
-int main()
-{
-    int a[rows][cols];
-    int b[rows][cols];
-    int n{};
+int main() {
+    int A[N][N], B[N][N];
+
+    // Input matrices A and B using std::cin
 
     cout << "Заполните ячейки данными:";
-    for(int i = 0; i < rows; i++)
+    for(int i = 0; i < N; i++)
     {
-        for (int j = 0; j < cols; j++)
+        for (int j = 0; j < N; j++)
         {
-            cin >>n;
-            a[i][j] = n; 
+            cin >> A[i][j];
         }
         
     }
 
     cout << endl; 
 
-     for(int i = 0; i < rows; i++)
+     for(int i = 0; i < N; i++)
     {
-        for (int j = 0; j < cols; j++)
+        for (int j = 0; j < N; j++)
         {
-            cin >>n;
-            b[i][j] = n; 
+            cin >> B[i][j]; 
         }
         
     }
 
-    cout << endl;
+    // Compare the matrices
+    if (areMatricesEqual(A, B)) {
+        cout << "Matrices are equal." << endl;
 
-    if(equalityTest(a, b)){
-        print(mainDiagonal(a));
-    } else{
-        cout << "матрицы не равны" << endl;
+        // Convert matrix A to diagonal form
+        convertToDiagonal(A);
+
+        // Output the diagonal matrix A
+        cout << "Diagonal matrix A:" << endl;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                cout << A[i][j] << " ";
+            }
+            cout << endl;
+        }
+    } else {
+        cout << "Matrices are not equal." << endl;
     }
 
+    return 0;
 }
