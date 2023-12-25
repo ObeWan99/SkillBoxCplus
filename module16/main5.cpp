@@ -12,9 +12,37 @@ enum switches
     CONDITIONER = 16 
 };
 
-int main(){
-    string str;
-    getline(cin, str);
+void parseData(string& str){
     stringstream buffer_str(str);
+    int temperature_inside, temperature_outside;
+    string movement, lights;
+    buffer_str >> temperature_inside >> temperature_outside >> movement >> lights ;
+
+    // Логика умного дома
+    if (temperature_outside < 0) {
+        // Включить систему обогрева водопровода
+        std::cout << "Water pipe heating ON!" << std::endl;
+    } else if (temperature_outside > 5) {
+        // Выключить систему обогрева водопровода
+        std::cout << "Water pipe heating OFF!" << std::endl;
+    }
+
+    if (lights == "on" && movement == "yes" ) {
+        // Включить садовое освещение
+        std::cout << "Garden lights ON!" << std::endl;
+    } else {
+        // Выключить садовое освещение
+        std::cout << "Garden lights OFF!" << std::endl;
+    }
+
+}
+
+
+int main(){
+    for(int i = 0; i < 48; i++){
+        string str;
+        getline(cin, str);
+        parseData(str);
+    }
 
 }

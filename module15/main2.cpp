@@ -1,18 +1,28 @@
 #include <iostream>
-#include <vector> 
-
+#include <vector>
 using namespace std;
 
-int main(){
-    vector<int> a = {2, 7, 11, 15};
-    int res = 9;
-
-for(int i = 0; i < a.size(); i++)
-{
-    if(a[i] + a[i+1] == res){
-        cout << a[i] << " " << a[i+1];
-        break;
+int find_sum(vector<int>& arr, int target) {
+    for (int i = 0; i < arr.size(); i++) {
+        for (int j = i + 1; j < arr.size(); j++) {
+            int sum = arr[i] + arr[j];
+            if (sum == target) {
+                cout << "The two numbers that sum up to " << target << " are: " << arr[i] << " and " << arr[j] << endl;
+                exit(0);
+            } else if (sum > target) {
+                break;
+            }
+        }
     }
+    cout << "No such numbers exist in the array." << endl;
+    return 0;
 }
 
+int main() {
+    vector<int> arr = {2, 7, 11, 15};
+    int target = 17;
+
+    find_sum(arr, target);
+
+    return 0;
 }

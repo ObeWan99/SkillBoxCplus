@@ -9,6 +9,7 @@ int main(){
     double a, b;
     char operation;
 
+    cout << "Введите выражение для расчета: ";
     cin >> str;
     stringstream stream(str);
     stream >> a >> operation >> b;
