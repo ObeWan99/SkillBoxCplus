@@ -1,88 +1,47 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
-vector<int> bubbleSort(vector<int>& a)
+void my_sort(int array[], int size)
 {
-    for(int i = 0; i < a.size(); i++)
-    {
-        for(int j = 0; j < a.size() - i - 1; j++)
-        {
-            if(a[j] > a[j+1]) {
-                int temp = a[j];
-                a[j] = a[j+1];
-                a[j+1] = temp;
-            }
-        }
-    }
-    return a;
+   for(int i = 0; i < size; i++)
+   {
+       for(int j = i; j < size; j++)
+       {
+           if(array[i] > array[j])
+           {
+               int tmp = array[j];
+               array[j] = array[i];
+               array[i] = tmp;
+           }
+       }
+   }
 }
 
+int findFifthMax(int array[], int size)
+{
+   if(size < 5)
+       return 0;
+   my_sort(array, size);
+   return  array[5];
+}
 
-// int main(){
-//     int n{};
-//     vector<int> a;
-//     a.resize(5);
-//     cout << "Введите число: ";
-//     while (n != -2)
-//     {
-//         cin >> n;
-
-//         if(n == -1) {
-//             if(a.size() < 5) {
-//                 cout << "Размер массива меньше 5" << "\n";
-//             }
-//             else {
-//                 bubbleSort(a);
-//                 for(int i  = 0; i < a.size(); i++)
-//                     cout << a[i] << " ";
-//                 cout << "\n";
-//                 cout << "Пятое число по возрастанию " << a[4] << '\n';
-//             }
-//         }
-//         else {
-//             a.push_back(n);
-//         }
-//     }
-// }   
-  
-
-int main(){
-    int n{};
-    vector<int> a;
-    cout << "Введите число: ";
-    while (n != -2)
-    {
-        cin >> n;
-
-        if(n == -1 && a.size() < 5) {
-            cout << "Размер массива меньше 5" << "\n";
-        }
-
-        else if(n == -1) {
-            bubbleSort(a);
-            if( a[5] > a[4]){
-                cout << "err" << endl;
-                a.pop_back();
-            }
-            else{
-                a.erase(a.begin() + 4);
-                bubbleSort(a);
-                for(int i  = 0; i < a.size(); i++)
-                    cout << a[i] << " ";
-                cout << "\n";
-                cout << "Пятое число по возрастанию " << a[4] << '\n';
-
-            }
-        }
-
-        else {
-            a.push_back(n);
-            for(auto& el : a){
-                cout << el <<" ";
-            }
-            cout << endl;
-        }
-    }
-}  
+int main()
+{
+   std::vector<int> data;
+   int currentNumber;
+   for(;;)
+   {
+       std::cin >> currentNumber;
+       if(currentNumber == -1)
+       {
+           //метод data позволит получить массив, который содержится внутри vector
+           std::cout << findFifthMax(data.data(), data.size()) << "\n";
+       }
+       else if(currentNumber == -2)
+       {
+           break;
+       }
+       data.push_back(currentNumber);
+   }
+   return 0;
+}
