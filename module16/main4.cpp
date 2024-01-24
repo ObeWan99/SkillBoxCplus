@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,16 +16,29 @@ enum note
 };
 
 int main(){
-    int melody[12] = {1, 5, 4, 2, 3, 6, 7, 1, 2, 3, 4, 5};
-
-    for (int i = 0; i < 12; ++i) {
-        if (melody[i] & DO) { std::cout << "DO "; }
-        if (melody[i] & RE) { std::cout << "RE "; }
-        if (melody[i] & MI) { std::cout << "MI "; }
-        if (melody[i] & FA) { std::cout << "FA "; }
-        if (melody[i] & SOL) { std::cout << "SOL "; }
-        if (melody[i] & LA) { std::cout << "LA "; }
-        if (melody[i] & SI) { std::cout << "SI "; }
+    int notes[5]{0};
+    vector<string> melody;
+    melody.reserve(5);
+    for(int i = 0; i < 5; i++){
+        string accord;
+        cin >> accord;
+        melody.push_back(accord);
+    }
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < melody[i].size(); j++){
+            char a = melody[i][j];
+            string b(1, a);
+            int val = stoi(b);
+            val--;
+            notes[i] |= 1 << val;
+        }
+        if (notes[i] & DO) { std::cout << "DO "; }
+        if (notes[i] & RE) { std::cout << "RE "; }
+        if (notes[i] & MI) { std::cout << "MI "; }
+        if (notes[i] & FA) { std::cout << "FA "; }
+        if (notes[i] & SOL) { std::cout << "SOL "; }
+        if (notes[i] & LA) { std::cout << "LA "; }
+        if (notes[i] & SI) { std::cout << "SI "; }
         std::cout << std::endl;
     }
 }
