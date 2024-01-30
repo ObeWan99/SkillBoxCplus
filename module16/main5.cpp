@@ -73,9 +73,9 @@ void parseData(string& str, int& hours, int& curr_switches_state){
 
 
 int main(){
+    int curr_switches_state{0};
     for(int days = 0; days < 2; days++){
         for(int hours = 0; hours <= 23; hours++){
-            int curr_switches_state{1};
             string str;
             cout << "Temperature inside, temperature outside, movement, lights: \n"; 
             getline(cin, str);
