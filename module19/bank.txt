@@ -6,11 +6,3 @@
 500 RUB
 200 RUB
 100 RUB
-SELECT "categoryColumn", count("categoryColumn") FROM "default"."ip_table" group by "categoryColumn"
-
-apple-domain-verification=DNnWJoArJobFJKhJ
-
-"193.232.252.14*200.162.128.152"
-
-a*TXT*cloudflare.com**apple-domain-verification=DNnWJoArJobFJKhJ*193.232.252.21*177.36.157.255
-193.232.252.21*177.36.157.255
