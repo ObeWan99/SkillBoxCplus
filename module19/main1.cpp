@@ -21,7 +21,7 @@ int main(){
     int count{};
     int sum{};
     
-    std::cout << "Введите слово для описка в файле: ";
+    std::cout << "Введите слово для поиска в файле: ";
     std::cin >> word_search;
     
     for(auto& word : words){
