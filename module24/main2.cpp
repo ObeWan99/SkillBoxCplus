@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iomanip>
 
 struct Friend {
     std::string name;
