@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/instruments.h
+
+/home/obewan/skillBox/src/instruments.cpp
+instruments.h
+/home/obewan/skillBox/src/instruments.h
+iostream
+-
+vector
+-
+cmath
+-
+
+/home/obewan/skillBox/src/main.cpp
+instruments.h
+/home/obewan/skillBox/src/instruments.h
+iostream
+-
+

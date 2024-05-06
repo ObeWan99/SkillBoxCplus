@@ -1,0 +1,5 @@
+/home/obewan/skillBox/build/CMakeFiles/rebuild_cache.dir
+/home/obewan/skillBox/build/CMakeFiles/edit_cache.dir
+/home/obewan/skillBox/build/src/CMakeFiles/rebuild_cache.dir
+/home/obewan/skillBox/build/src/CMakeFiles/edit_cache.dir
+/home/obewan/skillBox/build/src/CMakeFiles/operation.out.dir
