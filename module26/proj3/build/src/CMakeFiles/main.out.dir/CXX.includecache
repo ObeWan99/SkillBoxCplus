@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/monitor.h
+vector
+-
+
+../include/window.h
+monitor.h
+../include/monitor.h
+
+/home/obewan/SkillBoxCplus/module26/proj3/src/main.cpp
+window.h
+/home/obewan/SkillBoxCplus/module26/proj3/src/window.h
+monitor.h
+/home/obewan/SkillBoxCplus/module26/proj3/src/monitor.h
+iostream
+-
+string
+-
+
+/home/obewan/SkillBoxCplus/module26/proj3/src/monitor.cpp
+monitor.h
+/home/obewan/SkillBoxCplus/module26/proj3/src/monitor.h
+iostream
+-
+
+/home/obewan/SkillBoxCplus/module26/proj3/src/window.cpp
+window.h
+/home/obewan/SkillBoxCplus/module26/proj3/src/window.h
+
